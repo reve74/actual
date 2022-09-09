@@ -5,19 +5,19 @@ class RestaurantCart extends StatelessWidget {
   final Widget image; // 이미지
   final String name; // 레스토랑 이름
   final List<String> tags; // 레스토랑 태그
-  final int ratingCount; // 평점 갯수
+  final int ratingsCount; // 평점 갯수
   final int deliveryTime; // 배송시간
-  final int deliveryFree; // 배송 비용
-  final double rating; // 평균 평점
+  final int deliveryFee; // 배송 비용
+  final double ratings; // 평균 평점
 
   const RestaurantCart(
       {required this.image,
       required this.name,
       required this.tags,
-      required this.ratingCount,
+      required this.ratingsCount,
       required this.deliveryTime,
-      required this.deliveryFree,
-      required this.rating,
+      required this.deliveryFee,
+      required this.ratings,
       Key? key})
       : super(key: key);
 
@@ -53,12 +53,12 @@ class RestaurantCart extends StatelessWidget {
               children: [
                 _IconText(
                   icon: Icons.star,
-                  label: rating.toString(),
+                  label: ratings.toString(),
                 ),
                 renderDot(),
                 _IconText(
                   icon: Icons.receipt,
-                  label: ratingCount.toString(),
+                  label: ratingsCount.toString(),
                 ),
                 renderDot(),
                 _IconText(
@@ -68,7 +68,7 @@ class RestaurantCart extends StatelessWidget {
                 renderDot(),
                 _IconText(
                   icon: Icons.monetization_on,
-                  label: deliveryFree == 0 ? '무료' : deliveryFree.toString(),
+                  label: deliveryFee == 0 ? '무료' : deliveryFee.toString(),
                 ),
               ],
             ),

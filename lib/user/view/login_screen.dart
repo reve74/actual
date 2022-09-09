@@ -26,11 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final dio = Dio();
 
     // localhost
-    final emulatorIp = '10.0.2.2:3000';
-    final simulatorIp = '127.0.0.1:3000';
 
-
-    final ip = Platform.isAndroid ? emulatorIp : simulatorIp;
 
     return DefaultLayout(
       child: SafeArea(
@@ -105,18 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       primary: Colors.black,
                     ),
                     onPressed: () async {
-                      final refreshToken =
-                          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RAY29kZWZhY3RvcnkuYWkiLCJzdWIiOiJmNTViMzJkMi00ZDY4LTRjMWUtYTNjYS1kYTlkN2QwZDkyZTUiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTY2MjM4MzQ5NywiZXhwIjoxNjYyNDY5ODk3fQ.lPbNJy4Smq2O_oHjDRsW3q3QZXpJeY-a7jj50MVPSHA';
 
-                      final resp = await dio.post(
-                        'http://$ip/auth/token',
-                        options: Options(
-                          headers: {
-                            'authorization': 'Bearer $refreshToken',
-                          },
-                        ),
-                      );
-                      print(resp.data);
                     },
                     child: Text('회원가입'),
                   ),
