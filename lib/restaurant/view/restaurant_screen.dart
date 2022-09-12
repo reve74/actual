@@ -1,7 +1,7 @@
 import 'package:actual/common/const/data.dart';
-import 'package:actual/common/restaurant/component/restaurant_card.dart';
-import 'package:actual/common/restaurant/model/restaurant_model.dart';
-import 'package:actual/common/restaurant/view/restaurant_detail_screen.dart';
+import 'package:actual/restaurant/component/restaurant_card.dart';
+import 'package:actual/restaurant/model/restaurant_model.dart';
+import 'package:actual/restaurant/view/restaurant_detail_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -31,19 +31,19 @@ class RestaurantScreen extends StatelessWidget {
             future: paginateRestaurant(),
             builder: (context, AsyncSnapshot<List> snapshot) {
               if (!snapshot.hasData) {
-                return Container();
+                return Center(child: CircularProgressIndicator(),);
               }
 
               return ListView.separated(
                 itemBuilder: (context, index) {
                   final item = snapshot.data![index];
 
-                  final pItem = RestaurantModel.fromJson(json: item);
+                  final pItem = RestaurantModel.fromJson(item);
 
                   return GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => RestaurantDetailScreen()));
+                            builder: (context) => RestaurantDetailScreen(id: pItem.id,)));
                       },
                       child: RestaurantCard.fromModel(model: pItem));
                 },
