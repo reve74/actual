@@ -7,7 +7,7 @@ part 'cursor_pagination_model.g.dart';
   genericArgumentFactories: true,
 )
 class CursorPagination<T> {
-  final CursorPagination meta;
+  final CursorPaginationMeta meta;
   final List<T> data;
 
   CursorPagination({required this.meta, required this.data});

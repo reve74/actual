@@ -20,6 +20,7 @@ dependencies:
   json_annotation: ^4.4.0
   retrofit: '>=3.0.0 <4.0.0'
   logger: any
+  flutter_riverpod: ^1.0.4
 
 
 dev_dependencies:
