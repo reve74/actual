@@ -39,6 +39,6 @@ abstract class RestaurantRepository {
     'accessToken': 'true',
   })
   Future<RestaurantDetailModel> getRestaurantDetail({
-    @Path() required String id,
+    @Path() required String id, // /{id} 값 매핑
   });
 }
