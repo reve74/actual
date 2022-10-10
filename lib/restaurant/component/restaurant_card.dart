@@ -12,7 +12,8 @@ class RestaurantCard extends StatelessWidget {
   final int deliveryFee; // 배송 비용
   final double ratings; // 평균 평점
   final bool isDetail; // 상세카드 여부
-  final String? detail;
+  final String? detail; // 상세 내용
+  final String? heroKey; // Hero 위젯 태
 
   const RestaurantCard(
       {required this.image,
@@ -24,6 +25,7 @@ class RestaurantCard extends StatelessWidget {
       required this.ratings,
       this.detail,
       this.isDetail = false,
+        this.heroKey,
       Key? key})
       : super(key: key);
 
@@ -36,6 +38,7 @@ class RestaurantCard extends StatelessWidget {
         model.thumbUrl,
         fit: BoxFit.cover,
       ),
+      heroKey: model.id,
       name: model.name,
       tags: model.tags,
       ratingsCount: model.ratingsCount,
@@ -51,13 +54,20 @@ class RestaurantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (isDetail) image,
-        if (!isDetail)
+        if(heroKey != null)
+        Hero(
+          tag: ObjectKey(heroKey),
+          child: ClipRRect(
+            child: image,
+            borderRadius: BorderRadius.circular(isDetail ? 0 : 12),
+          ),
+        ),
+        if(heroKey == null)
           ClipRRect(
             child: image,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(isDetail ? 0 : 12),
           ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: isDetail ? 16.0 : 0),
           child: Column(
@@ -102,10 +112,11 @@ class RestaurantCard extends StatelessWidget {
                   ),
                 ],
               ),
-              if (detail != null && isDetail == true) Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Text(detail!),
-              ),
+              if (detail != null && isDetail == true)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Text(detail!),
+                ),
             ],
           ),
         ),
